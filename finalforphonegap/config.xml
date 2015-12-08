@@ -1,0 +1,21 @@
+<?xml version"1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets"
+		xmlns:gap="http://phonegap.com/ns/1.0"
+		id="com.phonegap.sh1234"
+		versionCode="11"
+		version="1.0.0">
+		<name>
+			Ashe-Minimart
+		</name>
+		<description>
+			This app assists shop keepers to manage inventory
+		</description>
+		<author href="http://www.ashesi.edu.gh" email="danielosei100@gmail.com">
+			Julateh Mulbah
+		</author>
+		<gap:plugin name="com.phonegap.plugins.barcodescanner"/>
+		<gap:plugin name="cordova-plugin-whitelist" source="npm"/>
+		<allow-navigation href="*"/>
+		<allow-intent href="*"/>
+		<access origin="*"/>
+</widget>

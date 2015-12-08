@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<!-- <script type="text/javascript" src="cordova.js"></script> -->
+<!-- <script type="text/javascript" src="barcodescanner.js"></script> -->
+<!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
+<link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+<!-- <script src="jquery.mobile-1.4.5/images"></script> -->
+<link rel="stylesheet" type="text/css" href="themes/julatehtheme.css">
+<script src="jquery.js"></script>
+<script src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="script.js"></script>
+</head>
+	<body>
+
+
+
+		<!-- login page -->
+		<form data-role="page" id="login" data-theme="c">
+			<center><H1>LOGIN PAGE</H1></center>
+			<center><p><span id="rep"></span></p></center>
+			<input type="text" placeholder="Enter Username" id="usname">
+			<input type="password" placeholder="Enter Password" id="passwd">
+			<center>
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="" data-role="button" id="logo" data-icon="user" data-iconpos="left"> LOGIN</a>
+					<a href="" data-role="button" id="out" data-icon="delete" data-iconpos="right"> LOG OUT</a>
+				</center>
+			</div>
+		</form>
+
+
+		<!-- display page -->
+		<div data-role="page" id="pageone" data-theme="b">
+			<div data-role="header" data-theme="c">
+				<h1>Ashesi MiniMart</h1>
+			</div>
+			<div data-role="header" data-theme="a">
+				<a href="#" data-role="button" id="home" data-icon="home" data-iconpos="left">HOME</a>
+				<h1>DASHBOARD</h1>
+				<a href="" data-role="button" id="logout" data-icon="back" data-iconpos="right">SWITCH USER</a>
+			</div>
+		
+			<center>
+				<div data-role="controlgroup" data-type="vertical">
+					<a href="index.html#add" data-role="button" data-icon="plus" data-iconpos="left" data-rel="dialog" data-transition="pop">ADD PRODUCT</a>
+					<a href="index.html#updaR" data-role="button" data-icon="edit" data-iconpos="left" data-rel="dialog" data-transition="slidedown">UPDATE PRODUCT</a>
+					
+				</div>
+				<div data-role="controlgroup" data-type="vertical">
+				<a href="index.html#sale" data-role="button" data-icon="minus" data-iconpos="right" data-rel="dialog" data-transition="turn">SELL PRODUCT</a>
+					<a href="" data-role="button" data-icon="refresh" id="refre" data-iconpos="right">REFRESH PAGE</a>
+				</div>
+				<div>
+					<p><span id="res" name="res"></span></p>
+				</div>
+			</center>
+			<div role="main" class="ui-content">
+				<ul id="myid" data-role="listview" data-inset="true" data-filter="true">
+					
+				</ul>
+			</div>
+			<div data-role="footer" data-theme="c">
+				<h1>Developed by Julateh</h1>
+			</div>
+		
+			<script type="text/javascript">
+			$(document).ready(function(){
+				getList();
+			});
+			</script>
+		</div>
+
+
+		<!-- adding products -->
+		<div data-role="page" id="add" data-theme="b">
+			<div data-role="header" data-theme="c">
+				<h1>Ashe-Minimart </h1>
+			</div>
+			<div data-role="header" data-theme="a">
+				<a href="#" data-role="button" id="home1" data-icon="home" data-iconpos="left">HOME</a>
+				<h1>ADDING PRODUCT</h1>
+				<a href="" data-role="button" id="logout1" data-icon="back" data-iconpos="right">SWITCH USER</a>
+			</div>
+		
+			<center>
+				<div>
+					<p><span id="res1" name="res1"></span></p>
+				</div>
+			</center>
+			<div role="main" class="ui-content">
+				<div>
+					<button onclick="startScan()">Scan Barcode</button><input type="text" id="apid">
+				</div>
+				<div>
+					<input type="text" id="pname" placeholder="Enter the Product's Name">
+				</div>
+				<div>
+					<input type="number" id="price" placeholder="Enter the Product's Price">
+				</div>
+				<div>
+					<input type="number" id="quant" placeholder="Enter the Product's Quantity">
+				</div>
+				
+				<center>
+				<div data-role="controlgroup" data-type="horizontal">
+					<input type="button" value="SAVE" id="addP">
+					<input type="button" value="CANCEL" id="canP">
+				</div>
+				</center>
+			</div>
+			<div data-role="footer" data-theme="c">
+				<h1>Developed by Julateh</h1>
+			</div>
+		</div>
+
+
+		<!-- updating products' price -->
+		<div data-role="page" id="updaR" data-theme="b">
+			<div data-role="header" data-theme="c">
+				<h1>Ahes-MiniMart</h1>
+			</div>
+			<div data-role="header" data-theme="a">
+				<a href="#" data-role="button" id="home4" data-icon="home" data-iconpos="left">HOME</a>
+				<h1>UPDATE PRODUCT</h1>
+				<a href="" data-role="button" id="logout" data-icon="back" data-iconpos="right">SWITCH USER</a>
+			</div>
+		
+			<center>
+				<div>
+					<p><span id="res2" name="res2"></span></p>
+				</div>
+			</center>
+			<div role="main" class="ui-content">
+				<h2>Select Product to Edit Value Recorded</h2>
+				<select id="selector" onchange="upda()">
+				</select>
+			</div>
+			<div data-role="footer" data-theme="c">
+				<h1>Developed by Julateh</h1>
+			</div>
+				<script type="text/javascript">
+				$(document).ready(function(){
+					update();
+				});
+				</script>
+		</div>
+
+
+		<div data-role="page" id="upda" data-theme="b">
+			<div data-role="header" data-theme="c">
+				<h1>Ashe-Minimart </h1>
+			</div>
+			<div data-role="header" data-theme="a">
+				<a href="#" data-role="button" id="home2" data-icon="home" data-iconpos="left">HOME</a>
+				<h1>UPDATE PRODUCT</h1>
+				<a href="" data-role="button" id="logout" data-icon="back" data-iconpos="right">SWITCH USER</a>
+			</div>
+		
+			<center>
+				<div>
+					<p><span id="res5" name="res5"></span></p>
+				</div>
+			</center>
+			<div role="main" class="ui-content">
+				<div>
+					Product ID<input type="text" id="upid" name="upid" value="" readonly>
+				</div>
+				<div>
+					Product Name<input type="text" id="upname" name="upname" value="">
+				</div>
+				<div>
+					Price<input type="number" id="uprice" name="uprice" value="">
+				</div>
+				<div>
+					Description<textarea rows="4" cols="35" id="udesc" name="udesc" value=""></textarea>
+				</div>
+				<div>
+					Quantity<input type="number" id="uquant" name="uquant" value="">
+				</div>
+				<center>
+				<div data-role="controlgroup" data-type="horizontal">
+					<input type="button" value="SAVE" id="UP">
+					<input type="button" value="CANCEL" id="cUP">
+				</div></center>
+			</div>
+			<div data-role="footer" data-theme="c">
+				<h1>Developed by Julateh</h1>
+			</div>
+		</div>
+		<!-- sales point -->
+		<div data-role="page" id="sale" data-theme="b">
+			<div data-role="header" data-theme="c">
+				<h1>Ashe-MiniMart</h1>
+			</div>
+			<div data-role="header" data-theme="a">
+				<a href="#" data-role="button" id="home3" data-icon="home" data-iconpos="left">HOME</a>
+				<h1>SALE JOINT</h1>
+				<a href="" data-role="button" id="logout" data-icon="back" data-iconpos="right">SWITCH USER</a>
+			</div>
+		
+			<center>
+				<div>
+					<p><span id="res4" name="res4"></span></p>
+				</div>
+			</center>
+			<div role="main" class="ui-content">
+				<div>
+					<button onclick="startScan1()">Scan Product Barcode</button>
+					<input type="text" id="spid" placeholder="Enter the Barcode of the Product" onkeyup="salesPoint()">
+				</div>
+				<div>
+					Name:<input type="text" id="sna" placeholder="" value="" readonly>
+				</div>
+				<div>
+					Price:<input type="number" id="spr" placeholder="" value="" readonly>
+				</div>
+				<div>
+					Quantity:<input type="number" id="squan" placeholder="How much is bought" onkeyup="sale()">
+				</div>
+				<div>
+					Cost:<input type="number" id="cost" readonly>
+				</div>
+				<div>
+					Telephone:<input type="tel" id="sphone" placeholder="Enter Customer's phone Number">
+				</div>
+				<div>
+					<input type="hidden" id="disc">
+				</div>
+				<center>
+				<div data-role="controlgroup" data-type="horizontal">
+					<input type="button" value="CONTINUE" id="cell">
+					<input type="button" value="CANCEL" id="cUP1">
+				</div></center>
+			</div>
+			<div data-role="footer" data-theme="c">
+				<h1>Developed by Julateh</h1>
+			</div>
+		</div>
+	</body>
+	
+</html>
